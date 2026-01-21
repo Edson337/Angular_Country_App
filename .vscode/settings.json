@@ -2,8 +2,10 @@
     "cSpell.words": [
         "Aplicación",
         "Empezar",
+        "país",
         "Países",
-        "prefersdark"
+        "prefersdark",
+        "región"
     ],
     "angular-schematics.schematicsDefaultOptions": {
         "angular-*": {
