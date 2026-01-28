@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { map, Observable, catchError, throwError } from 'rxjs';
 import type { RESTCountry } from '../interfaces/rest-countries.interface';
 import type { Country } from '../interfaces/country.interface';
 import { CountryMapper } from '../mappers/country.mapper';
@@ -15,8 +15,14 @@ export class CountryService {
 
   searchByCapital(query: string): Observable<Country[]> {
     query = query.toLowerCase();
-    return this.http
-      .get<RESTCountry[]>(`${API_URL}/capital/${query}`)
-      .pipe(map(resp => CountryMapper.mapRestCountryArrayToCountryArray(resp)));
+    return this.http.get<RESTCountry[]>(`${API_URL}/capital/${query}`).pipe(
+      map((resp) => CountryMapper.mapRestCountryArrayToCountryArray(resp)),
+      catchError((error) => {
+        console.log('Error in searchByCapital:', error);
+        return throwError(
+          () => new Error(`No se encontro un pais con esa capital: ${query}`),
+        );
+      }),
+    );
   }
 }
