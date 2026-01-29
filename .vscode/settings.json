@@ -3,9 +3,11 @@
         "Acciones",
         "Aplicación",
         "Bandera",
+        "Cargando",
         "cioc",
         "demonyms",
         "Empezar",
+        "encontraron",
         "encontro",
         "español",
         "gini",
@@ -18,7 +20,8 @@
         "Países",
         "Población",
         "prefersdark",
-        "región"
+        "región",
+        "resultados"
     ],
     "angular-schematics.schematicsDefaultOptions": {
         "angular-*": {
