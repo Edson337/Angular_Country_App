@@ -5,6 +5,7 @@
         "Bandera",
         "Cargando",
         "cioc",
+        "codigo",
         "demonyms",
         "Empezar",
         "encontraron",
@@ -21,6 +22,7 @@
         "Población",
         "prefersdark",
         "región",
+        "Regresar",
         "resultados"
     ],
     "angular-schematics.schematicsDefaultOptions": {
