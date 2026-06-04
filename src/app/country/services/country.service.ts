@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable, catchError, throwError, delay } from 'rxjs';
+import { map, Observable, catchError, throwError, delay, of } from 'rxjs';
 import type { RESTCountry } from '../interfaces/rest-countries.interface';
 import type { Country } from '../interfaces/country.interface';
 import { CountryMapper } from '../mappers/country.mapper';
