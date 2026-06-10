@@ -6,6 +6,18 @@ import { CountryListComponent } from "../../components/country-list/country-list
 import { Region } from '../../interfaces/region.type';
 import { CountryService } from '../../services/country.service';
 
+function validateQueryParam(queryParam: string): Region {
+  queryParam = queryParam.toLowerCase();
+  const validRegions: Record<string, Region> = {
+    'africa': 'Africa',
+    'americas': 'Americas',
+    'asia': 'Asia',
+    'europe': 'Europe',
+    'oceania': 'Oceania',
+    'antarctic': 'Antarctic'
+  };
+  return validRegions[queryParam] ?? 'Americas';
+}
 @Component({
   selector: 'by-region-page',
   imports: [CountryListComponent],
@@ -15,7 +27,7 @@ export class ByRegionPageComponent {
   countryService = inject(CountryService);
   activatedRoute = inject(ActivatedRoute);
   router = inject(Router);
-  queryParam = (this.activatedRoute.snapshot.queryParamMap.get('region') ?? '') as Region;
+  queryParam = this.activatedRoute.snapshot.queryParamMap.get('region') ?? '';
   public regions: Region[] = [
     'Africa',
     'Americas',
@@ -24,7 +36,7 @@ export class ByRegionPageComponent {
     'Oceania',
     'Antarctic',
   ];
-  selectedRegion = linkedSignal<Region>(() => this.queryParam ?? 'Americas');
+  selectedRegion = linkedSignal<Region>(() => validateQueryParam(this.queryParam));
 
   selectRegion(region: Region) {
     this.selectedRegion.set(region);
